@@ -6,14 +6,14 @@ Uma inteligência artificial dedicada ao monitoramento de idosos, capaz de disce
 
 ## Rubricas
 
-1.0 ***R1 - NOTA 2: Identificar pessoas***
+1.0 ***R1 - NOTA 2: Identificar pessoas*** -> Larissa
 
-1.1 ***R4 - NOTA 2: Identificar objetos***
+1.1 ***R4 - NOTA 2: Identificar objetos*** -> Ester
 
-2.0 ***R2 - NOTA 1: Identificar posição*** 
+2.0 ***R2 - NOTA 1: Identificar posição*** -> Guilherme
 
-2.1 ***R5 - NOTA 2: Reconhecimento facial***
+2.1 ***R5 - NOTA 2: Reconhecimento facial*** -> Mateus
 
-3 ***R3 - NOTA 1: Identificar movimentos bruscos***
+3 ***R3 - NOTA 1: Identificar movimentos bruscos*** -> Alice
 
-4 ***R6 - NOTA 2: Unir posição com objetos e pessoa para definição de ações***
+4 ***R6 - NOTA 2: Unir posição com objetos e pessoa para definição de ações*** -> Todos
