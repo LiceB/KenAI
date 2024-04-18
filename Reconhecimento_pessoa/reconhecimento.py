@@ -11,7 +11,7 @@ while True:
     # Captura frame a frame
     ret, frame = cap.read()
 
-    # Converte o frame para escala de cinza
+    # Converte para a escala de cinza
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Detecta rostos na imagem em escala de cinza
@@ -19,9 +19,9 @@ while True:
 
     # Desenha retângulos ao redor dos rostos detectados
     for (x, y, w, h) in rosto:
-        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (153, 51, 153), 2)
 
-    # Mostra o frame com os retângulos dos rostos
+    # Mostra os rostos com os retângulos ao redor
     cv2.imshow('Detecção de Rosto', frame)
 
     # Condição para sair do loop (pressionar 'esc' para sair)
