@@ -1,0 +1,3 @@
+Live de detecção de objetos com python OpenCv e Yolo
+https://www.youtube.com/watch?v=winCGaZNy_c
+https://colab.research.google.com/drive/1MrMwnr97L5uUxerm9mMQn66j6XXfHoQe?usp=sharing#scrollTo=UMY34qBCKMQC
