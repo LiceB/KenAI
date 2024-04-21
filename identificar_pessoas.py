@@ -24,4 +24,11 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                                   mp_drawing.DrawingSpec(color=(245,66,230), thickness=4)
                                   )
         
+        print(results.pose_landmarks)
+        cv2.imshow("Mediapipe feed", image)
         
+        if cv2.waitKey(10) & 0xFF == ord('q'):
+            break
+
+cap.release()
+cv2.destroyAllWindows()
