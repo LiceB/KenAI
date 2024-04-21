@@ -1,3 +1,10 @@
 opencv-python
-IPython
+pybase64
+subprocess.run
+numpy
+TIME-python
+
+yolov8
 ultralytics
+PyTorch
+bytetrack
