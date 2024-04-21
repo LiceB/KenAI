@@ -21,3 +21,4 @@ print(comparacao, distancia)
 cv2.imshow('Miguel', imgMiguel2)
 cv2.imshow('Miguel2', imgMiguelTest2)
 cv2.waitKey(0)
+
