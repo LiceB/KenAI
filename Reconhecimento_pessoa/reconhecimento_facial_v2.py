@@ -1,56 +1,53 @@
-# import the necessary packages
-from imutils import paths
-import numpy as np
-import argparse
-import imutils
-import pickle
 import cv2
-import os
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--dataset", required=True,
-	help="path to input directory of faces + images")
-ap.add_argument("-e", "--embeddings", required=True,
-	help="path to output serialized db of facial embeddings")
-ap.add_argument("-d", "--detector", required=True,
-	help="path to OpenCV's deep learning face detector")
-ap.add_argument("-m", "--embedding-model", required=True,
-	help="path to OpenCV's deep learning face embedding model")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
-	help="minimum probability to filter weak detections")
-args = vars(ap.parse_args())
+import face_recognition as fr
 
-# load our serialized face detector from disk
-print("[INFO] loading face detector...")
-protoPath = os.path.sep.join([args["detector"], "deploy.prototxt"])
-modelPath = os.path.sep.join([args["detector"],
-	"res10_300x300_ssd_iter_140000.caffemodel"])
-detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
-# load our serialized face embedding model from disk
-print("[INFO] loading face recognizer...")
-embedder = cv2.dnn.readNetFromTorch(args["embedding_model"])
+# Carregar a imagem da pessoa conhecida (Miguel) uma imagem
+imgPessoa = fr.load_image_file('images/larissa.jpg')
+imgPessoa2 = cv2.cvtColor(imgPessoa, cv2.COLOR_BGR2RGB)
+encodingsPessoa = fr.face_encodings(imgPessoa2)[0]
 
-# grab the paths to the input images in our dataset
-print("[INFO] quantifying faces...")
-imagePaths = list(paths.list_images(args["dataset"]))
-# initialize our lists of extracted facial embeddings and
-# corresponding people names
-knownEmbeddings = []
-knownNames = []
-# initialize the total number of faces processed
-total = 0
+# Inicializar o classificador de cascata para detecção de rostos
+pessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+olhosPessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+sorrisoPessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_smile.xml')
 
-# loop over the image paths
-for (i, imagePath) in enumerate(imagePaths):
-	# extract the person name from the image path
-	print("[INFO] processing image {}/{}".format(i + 1,
-		len(imagePaths)))
-	name = imagePath.split(os.path.sep)[-2]
-	# load the image, resize it to have a width of 600 pixels (while
-	# maintaining the aspect ratio), and then grab the image
-	# dimensions
-	image = cv2.imread(imagePath)
-	image = imutils.resize(image, width=600)
-	(h, w) = image.shape[:2]
-	
+# Inicializar a captura de vídeo da webcam
+cap = cv2.VideoCapture(0)
+
+while True:
+    # Captura frame a frame
+    ret, frame = cap.read()
+
+    # Converte para a escala de cinza
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # Detecta rostos na imagem em escala de cinza
+    rosto = pessoa.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+    # Desenha retângulos ao redor dos rostos detectados
+    for (x, y, w, h) in rosto:
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (153, 51, 153), 2)
+        
+        
+    olhos = olhosPessoa.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))   
     
+    for (x, y, w, h) in olhos:
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+    # sorriso = sorrisoPessoa.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30)) 
+        
+    # for (x, y, w, h) in sorriso:
+    #     cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
+	
+	
+    # Mostra os rostos com os retângulos ao redor
+    cv2.imshow('Detecção de Rosto', frame)
+
+    # Condição para sair do loop (pressionar 'esc' para sair)
+    key = cv2.waitKey(1) & 0xFF
+    if key == 27:
+        break
+
+# Libera a webcam e fecha a janela
+cap.release()
+cv2.destroyAllWindows()
