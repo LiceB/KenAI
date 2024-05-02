@@ -2,14 +2,14 @@ import cv2
 import face_recognition as fr
 
 # Carregar a imagem da pessoa conhecida (Miguel) uma imagem
-imgPessoa = fr.load_image_file('images/larissa.jpg')
+imgPessoa = fr.load_image_file('Reconhecimento_pessoa/images/larissa.jpg')
 imgPessoa2 = cv2.cvtColor(imgPessoa, cv2.COLOR_BGR2RGB)
 encodingsPessoa = fr.face_encodings(imgPessoa2)[0]
 
 # Inicializar o classificador de cascata para detecção de rostos
 pessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 olhosPessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
-sorrisoPessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_smile.xml')
+# sorrisoPessoa = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_smile.xml')
 
 # Inicializar a captura de vídeo da webcam
 cap = cv2.VideoCapture(0)
