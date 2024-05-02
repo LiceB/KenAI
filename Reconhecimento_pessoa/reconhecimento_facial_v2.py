@@ -2,7 +2,7 @@ import cv2
 import face_recognition as fr
 
 # Carregar a imagem da pessoa conhecida (Miguel) uma imagem
-imgPessoa = fr.load_image_file('Reconhecimento_pessoa/images/larissa.jpg')
+imgPessoa = fr.load_image_file('images/larissa.jpg')
 imgPessoa2 = cv2.cvtColor(imgPessoa, cv2.COLOR_BGR2RGB)
 encodingsPessoa = fr.face_encodings(imgPessoa2)[0]
 
