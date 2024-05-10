@@ -1,0 +1,32 @@
+Tomar remedio (identificar o movimento de tomar o rémedio)
+	Itentificar o remedio
+	Identificar o movimento de tomar o remedio
+
+Identificar objetos
+
+Pessoa saiu de casa (Identificar objeto porta e  identificar a pessoa)
+
+Pessoa cair no chão (Identificar o movimento da pessoa com relação ao tempo)
+
+Pessoa se machucando (Identificar um movimento brusco da pessoa)
+
+Reconhecimento facial (Identificar a mesma pessoa e pessoas intrusas)
+
+
+
+
+
+
+
+___________________________
+obs: Identificador de ação, 
+mostrar a planta da casa com um ponto identificando a pessoa e o que ela está fazendo
+
+Identificar sintomas de problemas:
+manco da perna, mão no peito(infarto)
+
+
+Identificar se o fogo está ligado
+
+
+ 
