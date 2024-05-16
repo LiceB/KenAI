@@ -40,10 +40,8 @@ def reconhecimento_facil(modelo):
         if len(face_locations) > 0:
     
             encoding = face_recognition.face_encodings(rgb_frame, face_locations)[0]   
-
      
             pessoa_predita = modelo.predict([encoding])[0]
-
     
             top, right, bottom, left = face_locations[0]
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
