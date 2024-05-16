@@ -8,47 +8,34 @@ def inicia_mediapipe():
     return pose, mp_pose
 
 def analyze_pose(landmarks, mp_pose, posture_history):
-    nose_y = landmarks[mp_pose.PoseLandmark.NOSE.value].y
-    left_foot_y = landmarks[mp_pose.PoseLandmark.LEFT_HEEL.value].y
-    right_foot_y = landmarks[mp_pose.PoseLandmark.RIGHT_HEEL.value].y
+    # Pontos de interesse
+    left_foot_index_y = landmarks[mp_pose.PoseLandmark.LEFT_FOOT_INDEX.value].y
+    right_foot_index_y = landmarks[mp_pose.PoseLandmark.RIGHT_FOOT_INDEX.value].y
     left_shoulder_y = landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y
     right_shoulder_y = landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y
-    left_hip_x = landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x
     left_hip_y = landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y
-    right_hip_x = landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x
     right_hip_y = landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].y
-    left_knee_x = landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x
-    right_knee_x = landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].x
     left_knee_y = landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y
     right_knee_y = landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].y
 
-    # Distância vertical entre os ombros e os quadris
-    shoulder_hip_distance = abs(left_shoulder_y - left_hip_y)
+    left_foot_index_x = landmarks[mp_pose.PoseLandmark.LEFT_FOOT_INDEX.value].x
+    right_foot_index_x = landmarks[mp_pose.PoseLandmark.RIGHT_FOOT_INDEX.value].x
+    left_shoulder_x = landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x
+    right_shoulder_x = landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x
+    left_hip_x = landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x
+    right_hip_x = landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x
 
-    # Distância vertical entre os quadris e os joelhos
-    hip_knee_distance = abs(left_hip_y - left_knee_y)
-
-    # Distância vertical entre os joelhos e os pés
-    knee_foot_distance = abs(left_knee_y - left_foot_y)
-
-    # Distância horizontal entre os joelhos
-    knee_distance = abs(left_knee_x - right_knee_x)
-
-    # Comprimento da linha do quadril ao joelho
-    hip_knee_line_length = math.sqrt((left_hip_y - left_knee_y) ** 2 + (left_hip_x - left_knee_x) ** 2)
-
-    # Determinando a postura atual
-    if (hip_knee_line_length < knee_foot_distance and
-        shoulder_hip_distance > 0.1 and
-        nose_y < min(left_shoulder_y, right_shoulder_y) and
-        abs(left_shoulder_y - right_shoulder_y) < 0.1 and
-        abs(left_foot_y - right_foot_y) < 0.1):
+    # Verifique se a pessoa está sentada de perfil
+    if (left_hip_y > left_shoulder_y and right_hip_y > right_shoulder_y and
+        left_knee_y < left_hip_y and right_knee_y < right_hip_y and
+        left_foot_index_y >= left_knee_y and right_foot_index_y >= right_knee_y):
         posture = 'Sentado'
-    elif (hip_knee_distance > 0.1 and
-          shoulder_hip_distance > 0.1 and
-          nose_y < min(left_shoulder_y, right_shoulder_y) and
+    # Verifique se a pessoa está em pé
+    elif (left_shoulder_y < left_hip_y < left_foot_index_y and
+          right_shoulder_y < right_hip_y < right_foot_index_y and
+          abs(left_foot_index_y - right_foot_index_y) < 0.1 and
           abs(left_shoulder_y - right_shoulder_y) < 0.1 and
-          abs(left_foot_y - right_foot_y) < 0.1):
+          abs(left_hip_y - right_hip_y) < 0.1):
         posture = 'Em Pe'
     else:
         posture = 'Indeterminado'
@@ -74,7 +61,9 @@ def draw_landmarks(image, landmarks, mp_pose):
         mp_pose.PoseLandmark.LEFT_KNEE,
         mp_pose.PoseLandmark.RIGHT_KNEE,
         mp_pose.PoseLandmark.LEFT_ANKLE,
-        mp_pose.PoseLandmark.RIGHT_ANKLE
+        mp_pose.PoseLandmark.RIGHT_ANKLE,
+        mp_pose.PoseLandmark.LEFT_FOOT_INDEX,
+        mp_pose.PoseLandmark.RIGHT_FOOT_INDEX
     ]
     
     for landmark in upper_body_landmarks:
@@ -82,8 +71,6 @@ def draw_landmarks(image, landmarks, mp_pose):
         cv2.circle(image, 
                    (int(landmark_point.x * image.shape[1]), int(landmark_point.y * image.shape[0])), 
                    5, (255, 0, 0), -1)
-
-
 
 def process_frame(image, pose, mp_pose, posture_history):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -102,8 +89,9 @@ def process_frame(image, pose, mp_pose, posture_history):
     return image
 
 def main():
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture("./videokenai.mp4")
+    # cap = cv2.VideoCapture(0)  # Use a câmera ao vivo
+    # cap = cv2.VideoCapture("./videokenai.mp4")  # Use um arquivo de vídeo
+    cap = cv2.VideoCapture("./videokenaisentado.mp4")  # Use um arquivo de vídeo
     pose, mp_pose = inicia_mediapipe()
     posture_history = []  # Inicializando o histórico de posturas
 
