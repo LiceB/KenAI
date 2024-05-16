@@ -1,10 +1,8 @@
 opencv-python
-pybase64
-subprocess.run
-numpy
-TIME-python
 
 yolov8
 ultralytics
-PyTorch
-bytetrack
+
+setuptools
+scikit-build
+opencv-contrib-python==4.5.3.56 --no-build-isolation
