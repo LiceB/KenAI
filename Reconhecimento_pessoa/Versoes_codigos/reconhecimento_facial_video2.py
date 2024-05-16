@@ -2,7 +2,7 @@ import cv2
 import face_recognition as fr
 
 # Carregar o vídeo da pessoa conhecida (Miguel)
-videoPessoa = cv2.VideoCapture('videos/miguel.mp4')
+videoPessoa = cv2.VideoCapture('videos/mulher.mp4')
 
 # Capturar o primeiro frame do vídeo para obter a imagem da pessoa (Miguel)
 ret, frame = videoPessoa.read()
@@ -49,8 +49,8 @@ while cap.isOpened():
 
             # Exibe o resultado do reconhecimento na webcam
             if comparacao[0]:
-                print("Miguel")
-                cv2.putText(frame, "Miguel", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
+                print("Mikhail")
+                cv2.putText(frame, "Mikhail", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
             else:
                 print("Outra Pessoa")
                 cv2.putText(frame, "Outra Pessoa", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
