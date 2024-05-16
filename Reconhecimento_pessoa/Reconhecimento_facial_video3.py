@@ -18,10 +18,8 @@ pasta_pessoa2 = "D:/FIAP/2024/1_Semestre/AI ENGENEERING, COGNITIVE AND SEMANTIC 
 encodings_pessoa1 = carregar_imagens(pasta_pessoa1)
 encodings_pessoa2 = carregar_imagens(pasta_pessoa2)
 
-X_treino = encodings_pessoa1 + encodings_pessoa2
+X_treino = encodings_pessoa1 + encodings_pessoa2 #erro aqui 
 y_treino = ["Pessoa1"] * len(encodings_pessoa1) + ["Pessoa2"] * len(encodings_pessoa2)
-
-
 
 knn = KNeighborsClassifier(n_neighbors=3)   
 knn.fit(X_treino, y_treino)
