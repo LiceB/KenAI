@@ -56,15 +56,15 @@ while True:
         right_foot_y = right_foot_landmark.y * frame.shape[0]
         
         # Define um limite de proximidade para considerar uma queda
-        proximity_limit = 50  # pixels
+        proximity_limit = 60  # pixels
         
         # Verifica se o nariz está próximo ao nível do pé
         if abs(nose_y - left_foot_y) < proximity_limit or abs(nose_y - right_foot_y) < proximity_limit:
             #print("Queda detectada!")
-            cv2.putText(frame, "Queda!", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+            cv2.putText(frame, "Queda!", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
 
     # Mostra o frame
-    cv2.imshow('Vídeo', frame)
+    cv2.imshow('Detecção de queda', frame)
  
     # Verifica se a tecla 'q' foi pressionada para sair do loop
     if cv2.waitKey(1) & 0xFF == ord('q'):
