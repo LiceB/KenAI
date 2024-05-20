@@ -2,7 +2,3 @@ opencv-python
 
 yolov8
 ultralytics
-
-setuptools
-scikit-build
-opencv-contrib-python==4.5.3.56 --no-build-isolation
