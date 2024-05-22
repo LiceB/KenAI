@@ -25,6 +25,12 @@ Uma inteligência artificial dedicada ao monitoramento de idosos, capaz de disce
 - [Time](https://docs.python.org/3/library/time.html)
 - [Pyttsx3](https://pyttsx3.readthedocs.io/en/latest/)
 - [Threading](https://docs.python.org/3/library/threading.html)
+- [Imutils](https://imutils.readthedocs.io/en/latest/)
+- [Face Recognition](https://face-recognition.readthedocs.io/en/latest/face_recognition.html)
+- [Yolo](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html)
+- [Ultralytics](https://docs.ultralytics.com/)
+- [Math](https://docs.python.org/3/library/math.html)
+- [Numpy](https://numpy.org/devdocs/)
 
 ### *Rubricas*
 
