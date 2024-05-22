@@ -16,12 +16,15 @@ Uma inteligência artificial dedicada ao monitoramento de idosos, capaz de disce
 <p display="inline-block">
   <img width="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="python-logo"/>
   <img width="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/markdown/markdown-original.svg" alt="markdown-logo"/>
+  <img width="48" src="https://assets-global.website-files.com/5f6bc60e665f54545a1e52a5/60e7a074afbe8f09b4e86de5_roboflow_logomark_flat_round.svg" alt="roboflow-logo"/>
 </p>
 
 ### Bibliotecas usadas
 - [OpenCV](https://opencv.org/)
 - [Mediapipe](https://ai.google.dev/edge/mediapipe/solutions/examples?hl=pt-br)
 - [Time](https://docs.python.org/3/library/time.html)
+- [Pyttsx3](https://pyttsx3.readthedocs.io/en/latest/)
+- [Threading](https://docs.python.org/3/library/threading.html)
 
 ### *Rubricas*
 
