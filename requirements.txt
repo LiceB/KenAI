@@ -1,6 +1,8 @@
 # opencv-contrib-python
 opencv-python
 
+pyttsx3
+
 yolov8
 ultralytics
 time
