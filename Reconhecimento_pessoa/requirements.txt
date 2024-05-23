@@ -1,3 +1,5 @@
 opencv-python
 imutils
 face_recognition
+os
+numpy

@@ -1,10 +1,10 @@
 import cv2
 import face_recognition as fr
 
-imgPessoa = fr.load_image_file('images/miguel.png')
+imgPessoa = fr.load_image_file('images/Larissa.jpg')
 imgPessoa2 = cv2.cvtColor(imgPessoa,cv2.COLOR_BGR2RGB)
 
-imgPessoaComp = fr.load_image_file('images/larissa.jpg')
+imgPessoaComp = fr.load_image_file('images/mulher.jpg')
 imgPessoaComp2 = cv2.cvtColor(imgPessoaComp,cv2.COLOR_BGR2RGB)
 
 faceLoc = fr.face_locations(imgPessoa2)[0]
