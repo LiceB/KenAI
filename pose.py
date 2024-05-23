@@ -38,7 +38,7 @@ def analyze_pose(landmarks, mp_pose, posture_history):
           abs(left_hip_y - right_hip_y) < 0.1):
         posture = 'Em Pe'
     else:
-        posture = 'Indeterminado'
+        posture = 'Deitado'
 
     # Suavização dos dados
     posture_history.append(posture)
@@ -88,10 +88,11 @@ def process_frame(image, pose, mp_pose, posture_history):
 
     return image
 
-def main():
+def main(): 
     # cap = cv2.VideoCapture(0)  # Use a câmera ao vivo
     # cap = cv2.VideoCapture("./videokenai.mp4")  # Use um arquivo de vídeo
-    cap = cv2.VideoCapture("./videokenaisentado.mp4")  # Use um arquivo de vídeo
+    # cap = cv2.VideoCapture("./videokenaisentado.mp4")  # Use um arquivo de vídeo
+    cap = cv2.VideoCapture("./kenai5.mp4")  # Use um arquivo de vídeo
     pose, mp_pose = inicia_mediapipe()
     posture_history = []  # Inicializando o histórico de posturas
 
@@ -100,6 +101,7 @@ def main():
         if not success:
             break
 
+        # frame = cv2.resize(frame, (1200, 800))
         frame = process_frame(frame, pose, mp_pose, posture_history)
         
         cv2.imshow('Pose', frame)
